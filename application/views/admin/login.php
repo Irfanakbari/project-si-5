@@ -15,14 +15,43 @@
         <center>
             <h2>Login Administrator SMAN 1 Stabat</h2>
         </center>
-        
-        <form action="#" method="POST">
+
+        <form method="POST">
             <input type="text" name="username" required placeholder="Username" /><br />
             <input type="password" name="password" required placeholder="Password" /><br />
-            <input class="btn" type="submit" name="dologin" value="Login" />
+            <center>
+                <button class="btn" name="dologin">Login</button>
+            </center>
         </form>
     </div>
 
+    <script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("form").submit(function(e) {
+                $(".btn").html("<i class='fa fa-spinner fa-spin'></i> Loading...");
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '<?= base_url() ?>auth/prosesLogin',
+                    type: 'POST',
+                    data: formData,
+                    success: function(data) {
+                        const obj = JSON.parse(data);
+                        if (obj.status == 'success') {
+                            window.location.href = '<?= base_url() ?>admin/dashboard';
+                        } else {
+                            $(".btn").html("Login");
+                            alert(obj.message);
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
