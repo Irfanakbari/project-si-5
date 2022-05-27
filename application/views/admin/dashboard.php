@@ -38,7 +38,7 @@
                     <div class="box bg-cyan text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
                         <h6 class="text-white">Data Siswa</h6>
-                        <h3 class="text-white">6</h3>
+                        <h3 class="text-white"><?= $total ?></h3>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <div class="box bg-success text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
                         <h6 class="text-white">Siswa Lulus</h6>
-                        <h3 class="text-white">5</h3>
+                        <h3 class="text-white"><?= $lulus ?></h3>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                     <div class="box bg-warning text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
                         <h6 class="text-white">Siswa Tidak Lulus</h6>
-                        <h3 class="text-white">5</h3>
+                        <h3 class="text-white"><?= $not_lulus ?></h3>
                     </div>
                 </div>
             </div>
@@ -73,6 +73,10 @@
                 </div>
             </div>
         </div>
+        <?php 
+            $persenDibuka = number_format(($dibuka / $total) * 100, 2);
+            $persenNotDibuka = number_format(($not_dibuka / $total) * 100, 2);
+        ?>
         <div class="row">
             <div class="col">
                 <!-- card -->
@@ -81,25 +85,25 @@
                         <h4 class="card-title mb-0">Progress Box</h4>
                         <div class="mt-3">
                             <div class="d-flex no-block align-items-center">
-                                <span>81% Telah Dibuka</span>
+                                <span><?= $persenDibuka ?>% Telah Dibuka</span>
                                 <div class="ms-auto">
-                                    <span>125</span>
+                                    <span><?= $dibuka ?></span>
                                 </div>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 81%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <?= $persenDibuka ?>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                         <div>
                             <div class="d-flex no-block align-items-center mt-4">
-                                <span>19% Belum Dibuka</span>
+                                <span><?= $persenNotDibuka ?>% Belum Dibuka</span>
                                 <div class="ms-auto">
-                                    <span>120</span>
+                                    <span><?= $not_dibuka ?></span>
                                 </div>
                             </div>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 72%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?= $persenNotDibuka ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
