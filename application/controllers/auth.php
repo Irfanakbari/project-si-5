@@ -50,6 +50,21 @@ class Auth extends CI_Controller
     }
     public function siswaLogin()
     {
-        echo "Siswa Login";
+        $nisn = $this->input->post('nisn');
+        $this->load->model('siswa_model');
+        $user = $this->siswa_model->siswa_login($nisn);
+        if ($user) {
+            echo json_encode(['status' => 'success', 'message' => 'Login berhasil']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Login gagal']);
+        }
+    }
+    public function siswaLogout()
+    {
+        $this->load->model('siswa_model');
+        if ($this->siswa_model->siswa_logout()) {
+            redirect('/');
+        }
+        return;
     }
 }

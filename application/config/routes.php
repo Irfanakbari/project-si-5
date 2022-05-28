@@ -58,4 +58,7 @@ $route['admin/login'] = 'auth/adminLogin';
 $route['admin/dashboard'] = 'admin';
 $route['admin/siswa'] = 'admin/siswa';
 $route['admin/pengumuman'] = 'admin/pengumuman';
+
+$route['portal'] = 'web/portal';
+$route['final'] = 'web/final';
 $route['contact'] = 'contact';

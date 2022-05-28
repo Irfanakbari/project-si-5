@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex,nofollow">
     <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/img/tutwuri.png">
     <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
     <link href="<?= base_url() ?>assets/extra-libs/calendar/calendar.css" rel="stylesheet" />

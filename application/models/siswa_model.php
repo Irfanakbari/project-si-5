@@ -29,4 +29,29 @@ class Siswa_model extends CI_Model
         $query = $this->db->get_where($this->_table,array('status'=>0));
         return $query->result();
     }
+    public function siswa_login($nisn) 
+    {
+        $this->db->where('nisn', $nisn);
+        $query = $this->db->get($this->_table);
+        $user = $query->row();
+        if (!$user) {
+            return false;
+        }
+        $this->session->set_userdata('nisn', $user->nisn);
+        return $this->session->has_userdata('nisn');
+    }
+    public function current_user()
+    {
+        if (!$this->session->has_userdata('nisn')) {
+            return null;
+        }
+        $user_id = $this->session->userdata('nisn');
+        $query = $this->db->get_where($this->_table, ['nisn' => $user_id]);
+        return $query->row();
+    }
+    public function siswa_logout()
+    {
+        $this->session->unset_userdata('nisn');
+        return !$this->session->has_userdata('nisn');
+    }
 }

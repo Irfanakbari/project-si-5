@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('siswa_model');
 		$this->load->model('auth_model');
+		$this->load->model('pengumuman_model');
 		if(!$this->auth_model->current_user()){
 			redirect('admin/login');
 		}
@@ -31,8 +32,9 @@ class Admin extends CI_Controller {
 	}
 	public function pengumuman()
 	{
+		$pengumuman = $this->pengumuman_model->get_all();
 		$this->load->view('admin/template/_navbar');
-		$this->load->view('admin/pengumuman');
+		$this->load->view('admin/pengumuman', ['pengumuman' => $pengumuman]);
 		$this->load->view('admin/template/_footer');
 	}
 }

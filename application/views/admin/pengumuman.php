@@ -37,11 +37,11 @@
                     <form action="#" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Judul</label>
-                            <input type="text" name="judul" class="form-control" id="exampleFormControlInput1" value="gadak tu">
+                            <input type="text" name="judul" class="form-control" id="exampleFormControlInput1" value="<?= $pengumuman->judul ?>">
                         </div>
                         <div class="mb-3">
                             <label for="isi" class="form-label">Isi</label>
-                            <textarea name="isi" class="form-control" rows="20" id="isi">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur illum blanditiis molestias rerum dolorem! Dolore, architecto sunt? Laudantium dolor accusamus odio provident dolorem. Nobis, impedit aperiam ullam accusantium ratione beatae.</textarea>
+                            <textarea name="isi" class="form-control" rows="20" id="isi"><?= $pengumuman->isi ?></textarea>
                         </div>
                         <button type="submit" class="btn btn-success"><i class="far fa-save"></i> Simpan</button>
                     </form>
