@@ -29,6 +29,14 @@ class Siswa_model extends CI_Model
         $query = $this->db->get_where($this->_table,array('status'=>0));
         return $query->result();
     }
+    public function siswa_import($data)
+    {
+        $this->db->insert_batch($this->_table, $data);
+    }
+    public function siswa_hapus($id)
+    {
+        $this->db->delete($this->_table, array('nisn' => $id));
+    }
     public function siswa_login($nisn) 
     {
         $this->db->where('nisn', $nisn);

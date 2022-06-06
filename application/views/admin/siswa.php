@@ -36,8 +36,8 @@
                     </div>
                     <div class="modal-body">
                         <p>Harap Kosongkan Data Siswa Supaya Gak Tertimpa</p>
-                        <p>Format Unduh <a href="<?= base_url() ?>assets/template/format.xls" download="">Disini</a></p>
-                        <form method="POST" action="menu/siswa/import.php" enctype="multipart/form-data">
+                        <p>Format Unduh <a href="<?= base_url() ?>assets/template/format.xlsx" download="">Disini</a></p>
+                        <form method="POST" action="<?= base_url() ?>admin/siswa_import" enctype="multipart/form-data">
                             <input type="hidden" value="" name="id" class="form-control" required="">
                             <div class="mb-3">
                                 <label for="name" class="col-form-label">Upload File :</label>
@@ -70,6 +70,7 @@
                                 <th>Kelas</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,10 +85,13 @@
                                         <td>Tidak Lulus</td>
                                     <?php endif; ?>
                                     <?php if ($s->status == 1) : ?>
-                                        <td>Dibuka</td>
+                                        <td style="color:green">Dibuka</td>
                                     <?php else : ?>
-                                        <td>Tidak Dibuka</td>
+                                        <td style="color:red">Tidak Dibuka</td>
                                     <?php endif; ?>
+                                    <td>
+                                        <a href="<?= base_url() ?>admin/siswa_hapus/<?= $s->nisn ?>" class="btn btn-danger btn-sm" style="color:white" ><i class="fas fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
