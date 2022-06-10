@@ -9,6 +9,7 @@ class Web extends CI_Controller {
 		$this->load->model('siswa_model');
 		$this->load->model('setting_model');
 		$this->load->model('pengumuman_model');
+		$this->load->library('form_validation');
 	}
 	public function index()
 	{

@@ -22,7 +22,7 @@
                 <a title="WhatsApp Admin" href="https://api.whatsapp.com/send?phone=6282276880570" target="_blank" class="sosm1" style="text-decoration:none;">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <a title="WhatsApp Admin" href="<?=base_url() ?>contact" class="sosm1" style="text-decoration:none;">
+                <a title="WhatsApp Admin" href="<?= base_url() ?>contact" class="sosm1" style="text-decoration:none;">
                     <i class="fa-solid fa-circle-info"></i>
                 </a>
             </div>
@@ -49,8 +49,9 @@
             <div class="form">
                 <h3>Login Siswa</h3>
                 <form action="#" method="POST">
-                    <input type="text" name="nisn" placeholder="NISN" />
-                    <input class="btn" type="submit" name="login" value="Login" />
+                    <input type="text" class="<?= form_error('message') ? 'invalid' : '' ?>" name="nisn" placeholder="NISN" value="<?= set_value('nisn') ?>" />
+                    <div class="invalid-feedback"><?= form_error('nisn') ?></div>
+                    <input class="btn" id="tombol" type="submit" name="login" value="Login" />
                 </form>
                 <center>
                     <div style="margin-bottom: 2cm;">
@@ -63,6 +64,12 @@
 <script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
+        $("#tombol").click(function() {
+            $("#tombol").attr("disabled", true);
+            // css
+            $("#tombol").css("cursor", "not-allowed");
+            $("#tombol").val("Loading...");
+        });
         $("form").submit(function(e) {
             e.preventDefault();
             var nisn = $("input[name='nisn']").val();
@@ -77,7 +84,13 @@
                     if (obj.status == "success") {
                         window.location.href = "<?= base_url() ?>portal";
                     } else {
-                        alert(obj.message);
+                        alert(obj.message.nisn);
+                        $("#tombol").click(function() {
+                            $("#tombol").attr("disabled", false);
+                            // css
+                            $("#tombol").css("cursor", "default");
+                            $("#tombol").val("Login");
+                        });
                     }
                 }
             });

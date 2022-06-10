@@ -53,6 +53,7 @@
             </div>
         </div>
         <!-- Tutup Modal -->
+
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
@@ -90,9 +91,37 @@
                                         <td style="color:red">Tidak Dibuka</td>
                                     <?php endif; ?>
                                     <td>
-                                        <a href="<?= base_url() ?>admin/siswa_hapus/<?= $s->nisn ?>" class="btn btn-danger btn-sm" style="color:white" ><i class="fas fa-trash"></i></a>
+                                        <a href="<?= base_url() ?>admin/siswa_hapus/<?= $s->nisn ?>" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-trash"></i></a>
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUser" data-id="<?= $s->nisn ?>" data-nama="<?= $s->nama_siswa ?>" data-kelas="<?= $s->kelas ?>" data-keterangan="<?= $s->keterangan ?>" data-status="<?= $s->status ?>"><i class="fas fa-edit"></i></button>
                                     </td>
                                 </tr>
+                                <!-- Modal Edit data -->
+                                <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editUserLabel"><i class="fas fa-upload"></i> Edit Siswa</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Harap Kosongkan Data Siswa Supaya Gak Tertimpa</p>
+                                                <p>Format Unduh <a href="<?= base_url() ?>assets/template/format.xlsx" download="">Disini</a></p>
+                                                <form method="POST" action="<?= base_url() ?>admin/siswa_import" enctype="multipart/form-data">
+                                                    <input type="hidden" value="" name="id" class="form-control" required="">
+                                                    <div class="mb-3">
+                                                        <label for="name" class="col-form-label">Upload File :</label>
+                                                        <input type="file" class="form-control" value="" id="file" name="file">
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tutup Modal -->
                             <?php endforeach; ?>
                         </tbody>
                     </table>

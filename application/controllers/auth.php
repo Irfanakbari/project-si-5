@@ -6,6 +6,7 @@ class Auth extends CI_Controller
     public function adminLogin()
     {
         $this->load->view('admin/login');
+        $this->load->library('form_validation');
     }
     public function prosesLogin()
     {
@@ -51,6 +52,23 @@ class Auth extends CI_Controller
     public function siswaLogin()
     {
         $nisn = $this->input->post('nisn');
+        $rules = [
+            [
+                'field' => 'nisn',
+                'label' => 'NISN',
+                'rules' => 'required|numeric|min_length[5]',
+                'errors' => [
+                    'required' => 'NISN tidak boleh kosong',
+                    'numeric' => 'NISN harus berupa angka',
+                    'min_length' => 'NISN harus berupa 5 digit atau lebih',
+                ]
+            ]
+        ];
+        $this->form_validation->set_rules($rules);
+        if ($this->form_validation->run() == false) {
+            echo json_encode(['status' => 'failed', 'message' => $this->form_validation->error_array()]);
+            return;
+        }
         $this->load->model('siswa_model');
         $user = $this->siswa_model->siswa_login($nisn);
         if ($user) {
