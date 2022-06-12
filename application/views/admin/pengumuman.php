@@ -34,7 +34,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url() ?>admin/pengumuman_edit" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Judul</label>
                             <input type="text" name="judul" class="form-control" id="exampleFormControlInput1" value="<?= $pengumuman->judul ?>">

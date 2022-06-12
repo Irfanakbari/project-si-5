@@ -75,11 +75,35 @@ class Admin extends CI_Controller {
 		$this->siswa_model->siswa_hapus($id);
 		redirect('admin/siswa');
 	}
+	public function siswa_edit(){
+		$nisn = $this->input->post('nisn');
+		$nama_siswa = $this->input->post('nama');
+		$kelas = $this->input->post('kelas');
+		$keterangan = $this->input->post('lulus');
+		$data = array(
+			'nisn' => $nisn,
+			'nama_siswa' => $nama_siswa,
+			'kelas' => $kelas,
+			'keterangan' => $keterangan
+		);
+		$this->siswa_model->siswa_edit($data);
+		redirect('admin/siswa');
+	}
 	public function pengumuman()
 	{
 		$pengumuman = $this->pengumuman_model->get_all();
 		$this->load->view('admin/template/_navbar');
 		$this->load->view('admin/pengumuman', ['pengumuman' => $pengumuman]);
 		$this->load->view('admin/template/_footer');
+	}
+	public function pengumuman_edit(){
+		$judul = $this->input->post('judul');
+		$isi = $this->input->post('isi');
+		$data = array(
+			'judul' => $judul,
+			'isi' => $isi
+		);
+		$this->pengumuman_model->pengumuman_edit($data);
+		redirect('admin/pengumuman');
 	}
 }

@@ -1,5 +1,5 @@
 <footer class="footer text-center">
-    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://www.wrappixel.com">WrapPixel</a>.
+    Kelompok 5 Praktikum 5 Sistem Informasi | 2022
 </footer>
 <!-- ============================================================== -->
 <!-- End footer -->

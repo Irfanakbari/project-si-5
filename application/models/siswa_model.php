@@ -37,6 +37,10 @@ class Siswa_model extends CI_Model
     {
         $this->db->delete($this->_table, array('nisn' => $id));
     }
+    public function siswa_edit($data)
+    {
+        $this->db->update($this->_table, $data, array('nisn' => $data['nisn']));
+    }
     public function siswa_login($nisn) 
     {
         $this->db->where('nisn', $nisn);

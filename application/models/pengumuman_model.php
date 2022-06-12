@@ -10,10 +10,8 @@ class Pengumuman_model extends CI_Model
         $query = $this->db->get($this->_table);
         return $query->row();
     }
-    public function update($id, $data)
+    public function pengumuman_edit($data)
     {
-        $this->db->where('id', $id);
-        $this->db->update($this->_table, $data);
-        return $this->db->affected_rows() > 0;
+        $this->db->update($this->_table, $data, array('id' => 1));
     }
 }

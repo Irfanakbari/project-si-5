@@ -92,11 +92,11 @@
                                     <?php endif; ?>
                                     <td>
                                         <a href="<?= base_url() ?>admin/siswa_hapus/<?= $s->nisn ?>" class="btn btn-danger btn-sm" style="color:white"><i class="fas fa-trash"></i></a>
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUser" data-id="<?= $s->nisn ?>" data-nama="<?= $s->nama_siswa ?>" data-kelas="<?= $s->kelas ?>" data-keterangan="<?= $s->keterangan ?>" data-status="<?= $s->status ?>"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUser<?= $s->nisn ?>" data-id="<?= $s->nisn ?>" data-nama="<?= $s->nama_siswa ?>" data-kelas="<?= $s->kelas ?>" data-keterangan="<?= $s->keterangan ?>" data-status="<?= $s->status ?>"><i class="fas fa-edit"></i></button>
                                     </td>
                                 </tr>
                                 <!-- Modal Edit data -->
-                                <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
+                                <div class="modal fade" id="editUser<?= $s->nisn ?>" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -104,13 +104,32 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Harap Kosongkan Data Siswa Supaya Gak Tertimpa</p>
-                                                <p>Format Unduh <a href="<?= base_url() ?>assets/template/format.xlsx" download="">Disini</a></p>
-                                                <form method="POST" action="<?= base_url() ?>admin/siswa_import" enctype="multipart/form-data">
+                                                <form action="<?= base_url() ?>admin/siswa_edit" method="POST">
                                                     <input type="hidden" value="" name="id" class="form-control" required="">
                                                     <div class="mb-3">
-                                                        <label for="name" class="col-form-label">Upload File :</label>
-                                                        <input type="file" class="form-control" value="" id="file" name="file">
+                                                        <label for="nisn" class="col-form-label">NISN : </label>
+                                                        <input type="text" class="form-control" value="<?= $s->nisn ?>"disabled>
+                                                        <input type="hidden" class="form-control" value="<?= $s->nisn ?>" name="nisn">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="nama" class="col-form-label">Nama : </label>
+                                                        <input type="text" class="form-control" value="<?= $s->nama_siswa ?>" name="nama">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="kelas" class="col-form-label">Kelas : </label>
+                                                        <input type="text" class="form-control" value="<?= $s->kelas ?>" name="kelas">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="lulus" class="col-form-label">Lulus? : </label>
+                                                        <select name="lulus" class="form-select">
+                                                           <?php if ($s->keterangan == 1) : ?>
+                                                                <option value="1" selected>Lulus</option>
+                                                                <option value="0">Tidak Lulus</option>
+                                                            <?php else : ?>
+                                                                <option value="1">Lulus</option>
+                                                                <option value="0" selected>Tidak Lulus</option>
+                                                            <?php endif; ?>
+                                                        </select>
                                                     </div>
                                             </div>
                                             <div class="modal-footer">
@@ -145,3 +164,5 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+<script>
+</script>
