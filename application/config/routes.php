@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['admin/login'] = 'auth/adminLogin';
+$route['admin/register'] = 'auth/register';
 $route['admin/dashboard'] = 'admin';
 $route['admin/siswa'] = 'admin/siswa';
 $route['admin/pengumuman'] = 'admin/pengumuman';

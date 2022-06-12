@@ -8,6 +8,11 @@ class Auth extends CI_Controller
         $this->load->view('admin/login');
         $this->load->library('form_validation');
     }
+    public function register()
+    {
+        $this->load->view('admin/register');
+        $this->load->library('form_validation');
+    }
     public function prosesLogin()
     {
         $username = $this->input->post('username');
@@ -22,6 +27,25 @@ class Auth extends CI_Controller
              echo json_encode(['status' => 'success', 'message' => 'Login berhasil']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Login gagal']);
+        }
+        return;
+    }
+    public function prosesRegister()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $nama = $this->input->post('nama');
+        if (!$username || !$password) {
+            echo json_encode(['status' => 'failed', 'message' => 'Username dan Password tidak boleh kosong']);
+            return;
+        }
+        $this->load->model('auth_model');
+        $user = $this->auth_model->register($username, $password,$nama);
+        if ($user) {
+             echo json_encode(['status' => 'success', 'message' => 'Register berhasil']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Register gagal']);
         }
         return;
     }

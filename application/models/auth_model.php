@@ -15,6 +15,16 @@ class Auth_model extends CI_Model
 		$query = $this->db->get_where($this->_table, ['id' => $user_id]);
 		return $query->row();
 	}
+    public function register($username, $password,$nama)
+    {
+        $data = [
+            'nama' => $nama,
+            'username' => $username,
+            'password' => $password,
+        ];
+        $this->db->insert($this->_table, $data);
+        return $this->db->affected_rows();
+    }
     public function admin_login($username, $password){
         $this->db->where('username', $username);
         $query = $this->db->get($this->_table);
