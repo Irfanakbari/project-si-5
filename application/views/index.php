@@ -48,7 +48,7 @@
 
             <div class="form">
                 <h3>Login Siswa</h3>
-                <form action="#" method="POST">
+                <form action="<?= base_url() ?>auth/siswaLogin" method="POST">
                     <input type="text" class="<?= form_error('message') ? 'invalid' : '' ?>" name="nisn" placeholder="NISN" value="<?= set_value('nisn') ?>" />
                     <div class="invalid-feedback"><?= form_error('nisn') ?></div>
                     <input class="btn" id="tombol" type="submit" name="login" value="Login" />
@@ -63,39 +63,7 @@
 </body>
 <script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $("#tombol").click(function() {
-            $("#tombol").attr("disabled", true);
-            // css
-            $("#tombol").css("cursor", "not-allowed");
-            $("#tombol").val("Loading...");
-        });
-        $("form").submit(function(e) {
-            e.preventDefault();
-            var nisn = $("input[name='nisn']").val();
-            $.ajax({
-                url: "<?= base_url() ?>auth/siswaLogin",
-                type: "POST",
-                data: {
-                    nisn: nisn
-                },
-                success: function(data) {
-                    const obj = JSON.parse(data);
-                    if (obj.status == "success") {
-                        window.location.href = "<?= base_url() ?>portal";
-                    } else {
-                        alert(obj.message.nisn);
-                        $("#tombol").click(function() {
-                            $("#tombol").attr("disabled", false);
-                            // css
-                            $("#tombol").css("cursor", "default");
-                            $("#tombol").val("Login");
-                        });
-                    }
-                }
-            });
-        });
-    });
+    
 </script>
 
 </html>

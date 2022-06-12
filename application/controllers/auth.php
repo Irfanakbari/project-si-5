@@ -96,9 +96,9 @@ class Auth extends CI_Controller
         $this->load->model('siswa_model');
         $user = $this->siswa_model->siswa_login($nisn);
         if ($user) {
-            echo json_encode(['status' => 'success', 'message' => 'Login berhasil']);
+            redirect('portal');
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Login gagal']);
+            redirect('/');
         }
     }
     public function siswaLogout()
